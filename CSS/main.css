@@ -1,4 +1,4 @@
-/* Universal reset for margin and padding */
+/* General reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,29 +12,26 @@ body {
     font-family: 'Work Sans', sans-serif;
     min-height: 100vh;
     padding-top: 3%;
+    transition: background-color 0.3s linear, color 0.3s linear;
 }
 
-/* Body themes with smooth transitions */
+/* Body themes */
 .standard {
     background-image: linear-gradient(100deg, #575656, #062e3f);
     color: #ffdfdb;
-    transition: background 0.3s ease, color 0.3s ease;
-    overflow: hidden;
 }
 
 .light {
     background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
     color: #1a150e;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .darker {
     background-image: linear-gradient(100deg, #001214, #001f29);
     color: white;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Header and form styling */
+/* Header and form styles */
 #header, #form, #datetime {
     margin: 0 1rem;
     min-height: 10vh;
@@ -42,35 +39,34 @@ body {
 }
 
 #header {
-    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center; /* Vertically centers content */
+    align-items: center;     /* Horizontally centers content */
     font-size: 3rem;
     min-height: 25vh;
     width: 100%;
+    text-align: center;
 }
 
-/* Flex layout for theme selectors */
+/* Theme selector */
 .flexrow-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     margin-right: 3%;
-    align-items: center;
 }
 
-/* Theme selector buttons */
 .theme-selector {
     border: 1px solid #d1dae3;
     border-radius: 50%;
     height: 35px;
-    width: 35px;
     margin: 0 8px;
-    transition: box-shadow 0.2s ease-in-out;
+    transition: transform 150ms ease-in-out, box-shadow 200ms ease-in-out;
+    width: 35px;
 }
 
 .theme-selector:hover {
-    box-shadow: 0 0 8px #fff;
+    box-shadow: 0 0 8px white;
     cursor: pointer;
 }
 
@@ -90,41 +86,34 @@ body {
     background-image: linear-gradient(100deg, #001214, #001f29);
 }
 
-/* Title and animations */
+/* Animation */
 #title {
-    white-space: pre;
+    border-right: solid 3px rgba(0, 0, 0, 0.75);
+    white-space: nowrap;
     overflow: hidden;
-    letter-spacing: 0.20rem;
+    letter-spacing: 0.2rem;
     margin-top: 50px;
     margin-bottom: 20px;
-    font-size: 2.5rem;
-    animation: typing 4s steps(30, end) infinite, cursor-blink 0.75s step-end infinite;
+    max-width: 480px;
+    animation: animated-text 3s steps(16, end) infinite, animated-cursor 750ms steps(16, end) infinite;
 }
 
-#title.darker-title {
-    animation: animated-text 2s steps(11, end) 0.5s 1 normal both, 
-               darker-animated-cursor 750ms steps(11, end) infinite;
-}
-
-/* Animations for title */
+/* Continuous typing animation */
 @keyframes animated-text {
-    from { width: 0%; }
-    to { width: 100%; }
+    0% { width: 0%; }
+    100% { width: 100%; }
 }
 
+/* Cursor animation */
 @keyframes animated-cursor {
-    from { border-right-color: rgba(0, 0, 0, 0.75); }
-    to { border-right-color: transparent; }
+    0%, 100% { border-right-color: rgba(0, 0, 0, 0.75); }
+    50% { border-right-color: transparent; }
 }
 
-@keyframes darker-animated-cursor {
-    from { border-right-color: #01394c; }
-    to { border-right-color: transparent; }
-}
-
-/* Input styling */
+/* Form styles */
 form {
     display: flex;
+    font-size: 1.7rem;
     justify-content: center;
     margin: 15px 0;
     padding: 0.8rem;
@@ -136,10 +125,11 @@ form input {
     font-size: 17px;
     border: none;
     outline: none;
-    border-radius: 17px 0 0 17px;
-    max-width: 500px;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
     width: 100%;
     transition: background-color 200ms ease-in-out;
+    max-width: 500px;
 }
 
 /* Input themes */
@@ -153,58 +143,43 @@ form input.light-input {
     color: #1a150e;
 }
 
-form input.light-input::placeholder {
-    color: #1a150e;
-    opacity: 0.7;
-}
-
 form input.darker-input {
     background-color: #01394c;
     color: white;
 }
 
-form input.darker-input::placeholder {
-    color: white;
+form input::placeholder {
     opacity: 0.7;
 }
 
 form input:hover {
     cursor: text;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-form input:focus {
-    background-color: #ddd;
-}
-
-/* Button Styling */
+/* Button styles */
 button {
     border: none;
     outline: none;
     padding: 10px;
     font-size: 17px;
-    border-radius: 0 17px 17px 0;
-    min-width: 100px;
-    transition: background-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+    border-radius: 15px;
+    transition: box-shadow 200ms ease, background-color 200ms ease-in-out;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 /* Button themes */
 button.standard-button {
-    background-color: rgb(247, 226, 223);
+    background-color: #f7e2df;
     color: #000;
 }
 
-button.standard-button:hover {
-    background-color: white;
-    box-shadow: 0 0 10px #fff8;
-}
-
 button.light-button {
-    background-color: white;
+    background-color: #fff;
     color: #1a150e;
-}
-
-button.light-button:hover {
-    background-color: #f0f0f0;
 }
 
 button.darker-button {
@@ -212,87 +187,82 @@ button.darker-button {
     color: white;
 }
 
+button.standard-button:hover {
+    background-color: #fff;
+    box-shadow: 0 0 10px #fff;
+}
+
+button.light-button:hover {
+    background-color: #f0f0f0;
+}
+
 button.darker-button:hover {
     background-color: #001f29;
 }
 
-/* Todo list styling */
+/* To-do list */
 #myUnOrdList {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    max-width: 1200px;
 }
 
 .todo-list {
+    min-width: 25%;
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .todo {
+    margin: 1rem;
+    font-size: 19px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.25em 0.5em;
     border-radius: 30px;
-    font-size: 19px;
     transition: background-color 200ms ease-in-out;
-    cursor: pointer;
-    margin: 0.5rem 0;
 }
 
-/* Completed task styling */
+.standard-todo { background-color: #1a1a1a; }
+.light-todo { background-color: #AEB1B4; }
+.darker-todo { background-color: #01394c; }
+
+.todo li {
+    padding: 7px;
+    font-size: 20px;
+    flex: 1;
+    border-radius: 30px;
+    overflow-wrap: anywhere;
+}
+
+.check-btn, .delete-btn {
+    font-size: 19px;
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    border-radius: 80%;
+    margin: 0 5px;
+}
+
+/* Completed task styles */
 .completed {
     text-decoration: line-through;
     opacity: 0.5;
     color: gray;
 }
 
-/* Task item themes */
-.standard-todo {
-    background-color: rgb(26, 27, 27);
-}
-
-.light-todo {
-    background-color: #AEB1B4;
-}
-
-.darker-todo {
-    background-color: #01394c;
-}
-
-/* Check and delete buttons */
-.check-btn, .delete-btn {
-    font-size: 1.3rem;
-    cursor: pointer;
-    width: 2.2em;
-    height: 2.2em;
-    border-radius: 50%;
-    margin: 0 5px;
-    transition: background-color 0.2s ease;
-}
-
-.check-btn:hover, .delete-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.todo-item {
-    padding: 0.5rem;
-    flex: 1;
-}
-
-/* Task deletion animation */
+/* Animation for task removal */
 .fall {
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    transform: translateY(50px) rotateZ(45deg);
+    transform: translateY(45rem) rotateZ(45deg);
     opacity: 0;
+    transition: 0.5s;
 }
 
 /* Responsive design */
 @media only screen and (max-width: 1000px) {
     .flexrow-container {
-        align-self: center;
+        align-self: unset;
         margin-right: 0;
     }
 }
@@ -303,11 +273,8 @@ button.darker-button:hover {
     }
 
     #title {
-        animation: animated-text 3s steps(16, end) 0.5s 1 normal both,
-                   animated-cursor 750ms steps(16, end) infinite;
-        margin-top: 30px;
-        margin-bottom: 10px;
         max-width: 330px;
+        animation: animated-text 3s steps(16, end) infinite, animated-cursor 750ms steps(16, end) infinite;
     }
 }
 
@@ -316,17 +283,22 @@ button.darker-button:hover {
         font-size: 1.5rem;
     }
 
+    #title {
+        max-width: 255px;
+        animation: animated-text 3.5s steps(16, end) infinite, animated-cursor 750ms steps(16, end) infinite;
+    }
+
     form {
         flex-direction: column;
+        align-items: center;
     }
 
     form input {
-        width: 80%;
-        margin-bottom: 10px;
+        border-radius: 17px;
     }
 
     form button {
-        width: 60%;
+        width: 50%;
+        margin-top: 15px;
     }
 }
-
