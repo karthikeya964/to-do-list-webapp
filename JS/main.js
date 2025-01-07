@@ -201,3 +201,36 @@ function changeTheme(color) {
         });
     });
 }
+
+
+
+// Select the todo form, input, and todo list
+const todoForm = document.getElementById('todo-form');
+const todoInput = document.querySelector('.todo-input');
+const todoList = document.getElementById('todo-list');
+
+// Event listener for the form submit to add a new task
+todoForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the form from refreshing the page
+    const taskText = todoInput.value.trim(); // Get the input value and remove extra spaces
+
+    if (taskText !== '') { // Only add tasks that are not empty
+        // Create a new list item
+        const todoItem = document.createElement('li');
+        todoItem.classList.add('todo'); // Add a class to style the item
+        todoItem.textContent = taskText; // Set the text content of the task
+
+        // Add a click event listener to toggle the completion of the task
+        todoItem.addEventListener('click', function() {
+            todoItem.classList.toggle('completed');
+        });
+
+        // Append the new task to the todo list
+        todoList.appendChild(todoItem);
+
+        // Clear the input field after adding the task
+        todoInput.value = '';
+    }
+});
+
+// Optional: To handle task deletion or additional functionality, you could add more features.
